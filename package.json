@@ -1,23 +1,24 @@
 {
   "name": "msi-kb-server",
   "version": "1.0.3",
-  "description": "simple rest api for controlling an msi steelseries keyboard",
+  "description": "Simple rest api for controlling an msi steelseries keyboard",
+  "author": "mindymagica64",
+  "license": "MIT",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mindymagica64/msi-keyboard-daemon-server.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "na"
-  },
-  "author": "mindymagica64",
-  "license": "MIT",
   "dependencies": {
-    "boom": "^2.8.0",
-    "daemon": "^1.1.0",
-    "hapi": "^8.8.0",
-    "joi": "^6.5.0",
-    "msi-keyboard": "0.0.3",
-    "node-syslog": "^1.2.0"
+    "boom": "2.x.x",
+    "bossy": "1.x.x",
+    "hapi": "8.x.x",
+    "hoek": "2.x.x",
+    "joi": "6.x.x",
+    "msi-keyboard": "0.0.x",
+    "node-syslog": "1.x.x"
   }
 }
