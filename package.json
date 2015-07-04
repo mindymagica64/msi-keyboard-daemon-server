@@ -14,10 +14,14 @@
   },
   "dependencies": {
     "boom": "2.x.x",
-    "daemon": "1.x.x",
+    "bossy": "1.x.x",
     "hapi": "8.x.x",
+    "hoek": "2.x.x",
     "joi": "6.x.x",
     "msi-keyboard": "0.0.x",
     "node-syslog": "1.x.x"
+  },
+  "devDependencies": {
+    "hapi-swagger": "0.x.x"
   }
 }
