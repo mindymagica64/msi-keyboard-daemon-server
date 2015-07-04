@@ -2,6 +2,7 @@ var Kb = require('msi-keyboard');
 var Hapi = require('hapi');
 var Syslog = require('node-syslog');
 var Joi = require('joi');
+var Boom = require('boom');
 
 var internals = {
 	'colors': 
@@ -22,7 +23,7 @@ var internals = {
 	'version': '1.0.0',
 	'port': 7070,
 	'logtype': 'syslog',
-	'daemon': true,
+	'daemon': false,
 	'log': function (prio, msg){
 		if(internals.logtype === 'syslog'){
 			Syslog.log(prio, msg)
@@ -41,9 +42,9 @@ if(internals.daemon) {
 
 if(internals.logtype === 'syslog'){
 	if(internals.daemon){
-		Syslog.init('msi-kbd', Syslog.log_PID | Syslog.log_DAEMON);
+		Syslog.init('msi-kbd', Syslog.LOG_PID, Syslog.LOG_DAEMON);
 	} else{
-		Syslog.init('msi-kbd', Syslog.log_PID);
+		Syslog.init('msi-kbd', Syslog.LOG_PID, Syslog.LOG_DAEMON);
 	}
 }
 
@@ -106,17 +107,14 @@ server.route({
 			payload: {
 				millis: Joi.number().integer().required(),
 				regions: Joi.array().items(Joi.string().valid(internals.regions)).min(1).max(2),
-				timeout: Joi.number().integer().required()
+				timeout: Joi.number().integer()
 			}
 		}
 	},
 	handler: function(request, reply){
 		internals.log(Syslog.log_INFO, 'got valid blink request. interval: ' + request.payload.millis + '. regions: ' + request.payload.regions + '. timeout: ' + request.payload.timeout);
 		if(!internals.colors_called){
-			reply({
-				statusCode: 500,
-				message: 'must call colors before blink!'
-			}).statusCode(500);
+			reply(Boom.preconditionFailed('must call colors at least once before calling blink!'));
 		} else{
 			if(request.payload.regions){
 				Kb.blink(request.payload.regions, request.payload.millis);

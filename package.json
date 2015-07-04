@@ -1,6 +1,6 @@
 {
   "name": "msi-kb-server",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "simple rest api for controlling an msi steelseries keyboard",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,7 @@
   "author": "mindymagica64",
   "license": "MIT",
   "dependencies": {
+    "boom": "^2.8.0",
     "daemon": "^1.1.0",
     "hapi": "^8.8.0",
     "joi": "^6.5.0",
