@@ -20,8 +20,5 @@
     "joi": "6.x.x",
     "msi-keyboard": "0.0.x",
     "node-syslog": "1.x.x"
-  },
-  "devDependencies": {
-    "hapi-swagger": "0.x.x"
   }
 }
